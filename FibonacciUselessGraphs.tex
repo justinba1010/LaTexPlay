@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Fibonacci and Useless Graphs}
+\author{Justin Baum}
+\date{March 5, 2018 - May 31 2018}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{seqsplit}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+We make a graph with the fibonacci sequence where each node is a number in the sequence, and every edge is any two nodes that when multiplied and subtracted with another(any node), give us another number in the fibonacci sequence. Then a set containing 1,2,3. We get some probably useless but neat properties.
+\[S=\{a_{1}=1;a_{2}=1; a_{n}=a_{n-1}+a_{n-2}|n\in \mathbb{N}\}\]
+\[V(G)=S\]
+\[ij\in E(G)\leftrightarrow (i \in S \wedge j \in S \wedge ((\exists k \in S)(i\cdot j-k\in S))\]
+\[Q=\{1,2,3\}\]
+\section{Conjectures}
+Conjecture 1: \[(\forall i \in S)(\forall j \in S)((i\in Q \vee j\in Q) \wedge (i \neq 1 \vee j \neq 1) \rightarrow ij \in E(G)\]
+Conjecture 2: \[(\forall i \in S)(\forall j \in S)(i\notin Q \wedge j\notin Q \rightarrow ij \notin E(G))\]
+
+
+\begin{lemma}
+  \[(\forall i \in S)(\forall j \in S)((i\in Q \vee j\in Q) \wedge (i \neq 1 \vee j \neq 1) \rightarrow ij \in E(G)\]
+  \begin{proof}i=1\\
+    Want: ${\{1,j\} \in S}$\newline
+    Need: ${j-k \in S}$
+    \begin{enumerate}
+        \item ${j = a_{n}}\because j \in S$
+        \item ${j-k}$
+        \item ${a_{n}-k}$
+        \item ${a_{n-1}+a_{n-2}-k}$
+        \item ${let\ k=a_{n-2}}\because k \in S$
+        \item ${j-k=a_{n-1}+a_{n-2}-a_{n-1}=a_{n-1}}$
+        \item ${a_{n-1}\in S}$
+        \item $\therefore {(\forall j \in S)(\exists k \in S)(j-k \in S) \rightarrow (\forall j \in S) (\{1,j\} \in E(G))}$
+    \end{enumerate}
+  \end{proof}
+  \begin{proof}i=2\\
+    Want: ${\{2,j\} \in S}$\newline
+    Need: ${2j-k \in S}$
+    \begin{enumerate}
+        \item ${j=a_{n}}\because j \in S$
+        \item ${2j-k}$
+        \item ${2a_{n}-k}$
+        \item ${let\  k=a_{n}}\because k \in S$
+        \item ${2j-k=2a_{n}-a_{n}=a_{n}}$
+        \item $\therefore{(\forall j \in S)(\exists k \in S)(2j-k \in S)\rightarrow(\forall j)(\{2,j\}\in E(G))}$
+    \end{enumerate}
+  \end{proof}
+  \begin{proof} i=3\\
+    Want: ${\{3,j\} \in S}$\newline
+    Need: ${3j-k \in S}$
+    \begin{enumerate}
+        \item ${j=a_{n}}\because j\in S$
+        \item ${3j-k}$
+        \item ${3a_{n}-k}$
+        \item ${3a_{n-1}+3a_{n-2}-k}$
+        \item ${3a_{n-2}+3a_{n-3}+3a_{n-2}-k}$
+        \item ${6a_{n-2}+3a_{n-2}-k}$
+        \item ${let\  k = a_{n-2}}\because k \in S$
+        \item ${5a_{n-2}+3_a{n-3}}$
+        \item ${3(a_{n-2}+a_{n-3})+2a_{n-2}}$
+        \item ${3a_{n-1}+2a_{n-2}}$
+        \item ${2(a_{n-1}+a_{n-2})+a_{n-1}}$
+        \item ${2a_{n}+a_{n-1}}$
+        \item ${(a_{n}+a_{n-1})+a_{n}}$
+        \item ${a_{n+1} + a_{n}}$
+        \item ${a_{n+2}}$
+        \item $\therefore {(\forall j \in S)(\exists k \in S)(3j-k \in S)\rightarrow(\forall j\in S)(\{3,j\}\in E(G))}\ \square$
+    \end{enumerate}
+  \end{proof}
+\end{lemma}
+
+\section{Conjecture 2: Exhaustive Search}
+For a finite universe of the first 45 terms of the fibonacci sequence:\\
+\[|E(G)|=128\]
+The second conjecture on these results also remained true.\\
+I also ran a test through the first 1000 terms, and the second conjecture held true. However this is not a proof, and my professor Dr. Cooper believes I need to hash out some number theory to fully prove this conjecture.
+\section{Conclusion}
+Useless graph with neat properties, the second conjecture most likely needs some number theory, so hopefully this is completed at some point. I was unable to find any papers with this conjecture, but then again I only used Google Scholar.
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
